@@ -24,9 +24,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE students ("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "FIO TEXT, "
-                + "TIME TEXT);"); // Изменен тип TIME на TEXT
+                + "TIME TEXT);");
 
-
+        db.execSQL("DELETE FROM students;");
         ContentValues studentValues = new ContentValues();
         String date = df.format(Calendar.getInstance().getTime());
 
@@ -49,6 +49,38 @@ public class DBHelper extends SQLiteOpenHelper {
         studentValues.put("FIO", "Романов Роман Романович");
         studentValues.put("TIME", date);
         db.insert("students", null, studentValues);
+    }
+
+    public void resetStudentsTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM students;");
+
+        // Вставка новых значений
+        ContentValues studentValues = new ContentValues();
+        String date = df.format(Calendar.getInstance().getTime());
+
+        // Добавляйте записи
+        studentValues.put("FIO", "Андрианов Владислав Алексеевич");
+        studentValues.put("TIME", date);
+        db.insert("students", null, studentValues);
+
+        studentValues.put("FIO", "Бочаров Евгений Юрьевич");
+        studentValues.put("TIME", date);
+        db.insert("students", null, studentValues);
+
+        studentValues.put("FIO", "Бажинов Иван Сергеевич");
+        studentValues.put("TIME", date);
+        db.insert("students", null, studentValues);
+
+        studentValues.put("FIO", "Петров Петр Петрович");
+        studentValues.put("TIME", date);
+        db.insert("students", null, studentValues);
+
+        studentValues.put("FIO", "Романов Роман Романович");
+        studentValues.put("TIME", date);
+        db.insert("students", null, studentValues);
+
+        db.close(); // Закрытие базы данных
     }
 
     @Override

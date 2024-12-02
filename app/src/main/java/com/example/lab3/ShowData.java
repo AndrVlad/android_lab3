@@ -27,7 +27,6 @@ public class ShowData extends AppCompatActivity {
             return insets;
         });
 
-
         try {
             DBHelper myDatabaseHelper = new DBHelper(this);
             SQLiteDatabase db = myDatabaseHelper.getReadableDatabase();
@@ -40,6 +39,7 @@ public class ShowData extends AppCompatActivity {
                 String _id = cursor.getString(0);
                 String FIO = cursor.getString(1);
                 String TIME = cursor.getString(2);
+
                 textView.append(" " + _id + " "+ FIO + " " + TIME + "\n");
             }
             cursor.close();
@@ -49,6 +49,5 @@ public class ShowData extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
-
     }
 }
