@@ -8,8 +8,15 @@
     tools:context=".ShowData">
 
     <TableRow
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:layout_width="99dp"
+        android:layout_height="884dp"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="6dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </TableRow>
 </androidx.constraintlayout.widget.ConstraintLayout>
