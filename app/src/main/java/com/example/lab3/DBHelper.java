@@ -79,8 +79,6 @@ public class DBHelper extends SQLiteOpenHelper {
         studentValues.put("FIO", "Романов Роман Романович");
         studentValues.put("TIME", date);
         db.insert("students", null, studentValues);
-
-        db.close(); // Закрытие базы данных
     }
 
     @Override
