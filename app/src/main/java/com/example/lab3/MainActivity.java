@@ -60,14 +60,18 @@ public class MainActivity extends AppCompatActivity {
         Integer id_key;
         Cursor cursor = db.query("students", new String[] {"MAX(_id) as max_id"},null, null, null, null, null);
 
-        id_key = cursor.getInt(0);
-
-        ContentValues studentValue = new ContentValues();
-        studentValue.put("FIO", "Иванов Иван Иванович");
-        db.update("students",
-                studentValue,
-                "_id = ?",
-                new String[] {Integer.toString(id_key)});
+        if(cursor.moveToFirst()) {
+            id_key = cursor.getInt(0);
+            ContentValues studentValue = new ContentValues();
+            studentValue.put("FIO", "Иванов Иван Иванович");
+            db.update("students",
+                    studentValue,
+                    "_id = ?",
+                    new String[] {Integer.toString(id_key)});
+        } else {
+            Toast toast = Toast.makeText(this, "Ошибка при добавлении записи", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     protected void onDestroy() {
