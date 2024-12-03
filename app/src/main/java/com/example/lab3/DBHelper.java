@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "students.db"; // Имя базы данных
     private static final int DB_VERSION = 1; // Версия базы данных
-    DateFormat df = new SimpleDateFormat("dd MM yyyy, HH:mm");
+    DateFormat df = new SimpleDateFormat("HH:mm:ss");
 
     DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +23,8 @@ public class ShowData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_data);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        TableLayout tableLayout = findViewById(R.id.tableLayout);
 
         try {
             DBHelper myDatabaseHelper = new DBHelper(this);
@@ -33,14 +32,29 @@ public class ShowData extends AppCompatActivity {
             Cursor cursor = db.query("students", new String[] {"_id",
                     "FIO", "TIME"},null, null, null, null, null);
 
-            TextView textView = (TextView) findViewById(R.id.textView1);
-            textView.setText("");
+
             while (cursor.moveToNext()) {
+                TableRow tableRow = new TableRow(this);
                 String _id = cursor.getString(0);
                 String FIO = cursor.getString(1);
                 String TIME = cursor.getString(2);
 
-                textView.append(" " + _id + " "+ FIO + " " + TIME + "\n");
+                TextView idTextView = new TextView(this);
+                idTextView.setText(_id);
+                idTextView.setPadding(8, 8, 8, 8);
+                tableRow.addView(idTextView);
+
+                TextView FIOTextView = new TextView(this);
+                FIOTextView.setText(FIO);
+                FIOTextView.setPadding(8, 8, 8, 8);
+                tableRow.addView(FIOTextView);
+
+                TextView TIMETextView = new TextView(this);
+                TIMETextView.setText(TIME);
+                TIMETextView.setPadding(8, 8, 8, 8);
+                tableRow.addView(TIMETextView);
+
+                tableLayout.addView(tableRow);
             }
             cursor.close();
             db.close();

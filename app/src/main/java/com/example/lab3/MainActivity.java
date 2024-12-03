@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
-    DateFormat df = new SimpleDateFormat("dd MM yyyy, HH:mm");
+    DateFormat df = new SimpleDateFormat("HH:mm:ss");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     studentValue,
                     "_id = ?",
                     new String[] {Integer.toString(id_key)});
+            Toast toast = Toast.makeText(this, "Запись добавлена", Toast.LENGTH_SHORT);
+            toast.show();
         } else {
             Toast toast = Toast.makeText(this, "Ошибка при добавлении записи", Toast.LENGTH_SHORT);
             toast.show();
