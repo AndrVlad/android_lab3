@@ -57,7 +57,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBtn3(View view) {
+        Integer id_key;
+        Cursor cursor = db.query("students", new String[] {"MAX(_id) as max_id"},null, null, null, null, null);
 
+        id_key = cursor.getInt(0);
+
+        ContentValues studentValue = new ContentValues();
+        studentValue.put("FIO", "Иванов Иван Иванович");
+        db.update("students",
+                studentValue,
+                "_id = ?",
+                new String[] {Integer.toString(id_key)});
     }
 
     protected void onDestroy() {
